@@ -3,9 +3,15 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "preinstall": "npx only-allow bun"
+    "preinstall": "npx only-allow bun",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "bun run --watch src/index.ts"
+  },
+  "dependencies": {
+    "elysia": "latest"
   },
   "devDependencies": {
+    "bun-types": "latest",
     "@types/bun": "latest"
   },
   "peerDependencies": {
