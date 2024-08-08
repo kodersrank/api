@@ -1,6 +1,6 @@
 {
   "name": "kodersrank-api",
-  "module": "index.ts",
+  "module": "src/index.ts",
   "type": "module",
   "scripts": {
     "preinstall": "npx only-allow bun",
