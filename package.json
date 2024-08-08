@@ -2,6 +2,9 @@
   "name": "kodersrank-api",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "preinstall": "npx only-allow bun"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
