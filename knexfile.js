@@ -11,6 +11,7 @@ const config = {
       user: DB_USER,
       password: DB_PASSWORD,
       database: DB_NAME,
+      ssl: true,
     },
     migrations: {
       directory: './migrations',
@@ -24,6 +25,7 @@ const config = {
       user: DB_USER,
       password: DB_PASSWORD,
       database: DB_NAME,
+      ssl: true,
     },
     migrations: {
       directory: './migrations',
