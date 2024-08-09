@@ -1,43 +1,32 @@
-// Update with your config settings.
+const { DB_HOST, DB_NAME, DB_USER, DB_PASSWORD } = process.env;
 
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
 module.exports = {
-  // development: {
-  //   client: 'sqlite3',
-  //   connection: {
-  //     filename: './dev.sqlite3'
-  //   }
-  // },
-  // staging: {
-  //   client: 'postgresql',
-  //   connection: {
-  //     database: 'my_db',
-  //     user:     'username',
-  //     password: 'password'
-  //   },
-  //   pool: {
-  //     min: 2,
-  //     max: 10
-  //   },
-  //   migrations: {
-  //     tableName: 'knex_migrations'
-  //   }
-  // },
-  // production: {
-  //   client: 'postgresql',
-  //   connection: {
-  //     database: 'my_db',
-  //     user:     'username',
-  //     password: 'password'
-  //   },
-  //   pool: {
-  //     min: 2,
-  //     max: 10
-  //   },
-  //   migrations: {
-  //     tableName: 'knex_migrations'
-  //   }
-  // }
+  development: {
+    client: 'pg',
+    connection: {
+      host: DB_HOST,
+      user: DB_USER,
+      password: DB_PASSWORD,
+      database: DB_NAME,
+    },
+    migrations: {
+      directory: './migrations',
+    },
+  },
+
+  production: {
+    client: 'pg',
+    connection: {
+      host: DB_HOST,
+      user: DB_USER,
+      password: DB_PASSWORD,
+      database: DB_NAME,
+    },
+    migrations: {
+      directory: './migrations',
+    },
+  },
 };
