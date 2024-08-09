@@ -3,7 +3,7 @@ const { DB_HOST, DB_NAME, DB_USER, DB_PASSWORD } = process.env;
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
-module.exports = {
+const config = {
   development: {
     client: 'pg',
     connection: {
@@ -30,3 +30,5 @@ module.exports = {
     },
   },
 };
+
+export default config;
