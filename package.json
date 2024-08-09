@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "elysia": "1.1.5",
-    "knex": "3.1.0"
+    "knex": "3.1.0",
+    "pg": "^8.12.0"
   },
   "devDependencies": {
     "@types/bun": "1.1.6",
