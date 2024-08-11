@@ -4,23 +4,51 @@ import { db } from '../db';
 export const getSecretHandler: Handler = async ({ error, params }) => {
   const { hash } = params;
 
-  // Retrieve secret from the database
-  const secretRecord = await db('secrets').where({ hash }).first();
+  // fetch the secret from the database
+  const secret = await db('secrets').where({ hash }).first();
 
-  if (!secretRecord) {
-    error(404);
-    return;
+  // if secret does not exist, return 404
+  if (!secret) {
+    return error(404, 'secret not found');
   }
 
+  const {
+    expires_at: expiresAt,
+    views_count: viewsCount,
+    expire_after_views: expireAfterViews,
+    secret: secretText,
+    created_at: createdAt,
+  } = secret;
+
+  // check expiration based on TTL
+  if (new Date(expiresAt) <= new Date()) {
+    return error(410, 'secret has expired');
+  }
+
+  // check expiration based on views
+  if (viewsCount >= expireAfterViews) {
+    return error(410, 'secret has expired');
+  }
+
+  const updatedCount = viewsCount + 1;
+
+  // update the number of views
+  await db('secrets').where({ hash }).update({
+    views_count: updatedCount,
+  });
+
+  const remainingViews = +expireAfterViews - +updatedCount;
+
+  // prepare the response data
   const response = {
-    hash: secretRecord.hash,
-    secretText: secretRecord.secret,
-    createdAt: secretRecord.createdAt.toISOString(),
-    expiresAt: secretRecord.expiresAt
-      ? secretRecord.expiresAt.toISOString()
-      : null,
-    remainingViews: secretRecord.expireAfterViews,
+    hash,
+    secretText: secretText,
+    createdAt,
+    expiresAt,
+    viewsCount: updatedCount,
+    remainingViews: remainingViews >= 0 ? remainingViews : undefined,
   };
 
+  // default response with 200 status code
   return response;
 };
