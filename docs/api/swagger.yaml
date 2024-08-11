@@ -74,6 +74,9 @@ paths:
             $ref: "#/definitions/Secret"
         404:
           description: "Secret not found"
+        410:
+          description: "Secret exceeded view count or expiry date"
+
 definitions:
   Secret:
     type: "object"
