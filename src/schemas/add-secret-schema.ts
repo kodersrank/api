@@ -3,7 +3,7 @@ import { SecretSchema } from './secret-schema';
 import { SecretSchemaExtended } from './secret-schema-extended';
 
 export const AddSecretSchema: InputSchema<never> = {
-  body: t.Object(SecretSchema),
+  body: SecretSchema,
   response: {
     201: t.Object(SecretSchemaExtended.properties, {
       description: 'Successful operation',
