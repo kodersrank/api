@@ -44,8 +44,8 @@ paths:
         type: "integer"
         format: "int32"
       responses:
-        200:
-          description: "successful operation"
+        201:
+          description: "Successful operation"
           schema:
             $ref: "#/definitions/Secret"
         422:
@@ -101,4 +101,3 @@ definitions:
 externalDocs:
   description: "Find out more about Swagger"
   url: "http://swagger.io"
-  
