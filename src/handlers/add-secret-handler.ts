@@ -11,25 +11,26 @@ export const addSecretHandler: Handler = async ({ body }) => {
     .update(secret + Date.now().toString())
     .digest('hex');
 
+  const createdAt = new Date();
+
+  const expiresAt =
+    +expireAfter > 0 ? new Date(Date.now() + expireAfter * 60000) : null;
+
   // insert secret into the database
   await db('secrets').insert({
     secret,
-    expireAfterViews,
-    expireAfter,
-    createdAt: new Date(),
-    expiresAt:
-      expireAfter > 0 ? new Date(Date.now() + expireAfter * 60000) : null,
+    expire_after_views: expireAfterViews,
+    expire_after: expireAfter,
+    created_at: createdAt,
+    expires_at: expiresAt,
     hash,
   });
 
   const response = {
     hash,
     secretText: secret,
-    createdAt: new Date().toISOString(),
-    expiresAt:
-      expireAfter > 0
-        ? new Date(Date.now() + expireAfter * 60000).toISOString()
-        : null,
+    createdAt,
+    expiresAt,
     remainingViews: expireAfterViews,
   };
 

@@ -6,10 +6,10 @@ exports.up = function (knex) {
   return knex.schema.createTable('secrets', (table) => {
     table.increments('id').primary();
     table.string('secret').notNullable();
-    table.integer('expireAfterViews').notNullable();
-    table.integer('expireAfter').notNullable();
-    table.timestamp('createdAt').defaultTo(knex.fn.now());
-    table.timestamp('expiresAt');
+    table.integer('expire_after_views').notNullable();
+    table.integer('expire_after').notNullable();
+    table.timestamp('created_at').defaultTo(knex.fn.now());
+    table.timestamp('expires_at');
   });
 };
 
