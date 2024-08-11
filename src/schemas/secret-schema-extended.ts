@@ -14,4 +14,5 @@ export const SecretSchemaExtended = t.Object({
   hash: t.String(),
   createdAt: t.Date(),
   expiresAt: t.Date(),
+  remainingViews: t.Number(),
 });

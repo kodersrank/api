@@ -15,6 +15,7 @@ export const getSecretHandler: Handler = async ({ error, params }) => {
   const {
     expires_at: expiresAt,
     views_count: viewsCount,
+    expire_after: expireAfter,
     expire_after_views: expireAfterViews,
     secret: secretText,
     created_at: createdAt,
@@ -45,6 +46,8 @@ export const getSecretHandler: Handler = async ({ error, params }) => {
     secretText: secretText,
     createdAt,
     expiresAt,
+    expireAfter,
+    expireAfterViews,
     viewsCount: updatedCount,
     remainingViews: remainingViews >= 0 ? remainingViews : undefined,
   };
