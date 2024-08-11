@@ -1,9 +1,13 @@
 import { type InputSchema, t } from 'elysia';
+import { SecretSchema } from './secret-schema';
+import { SecretSchemaExtended } from './secret-schema-extended';
 
 export const AddSecretSchema: InputSchema<never> = {
-  body: t.Object({
-    secret: t.String(),
-    expireAfterViews: t.Number({ minimum: 1 }),
-    expireAfter: t.Number({ minimum: 0 }),
-  }),
+  body: t.Object(SecretSchema),
+  response: {
+    201: t.Object(SecretSchemaExtended.properties, {
+      description: 'Successful operation',
+    }),
+    422: t.String({ description: 'Invalid input' }),
+  },
 };
