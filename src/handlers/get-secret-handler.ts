@@ -5,7 +5,7 @@ export const getSecretHandler: Handler = async ({ error, params }) => {
   const { hash } = params;
 
   // Retrieve secret from the database
-  const secretRecord = await db('secrets').where({ id: hash }).first();
+  const secretRecord = await db('secrets').where({ hash }).first();
 
   if (!secretRecord) {
     error(404);
@@ -13,7 +13,7 @@ export const getSecretHandler: Handler = async ({ error, params }) => {
   }
 
   const response = {
-    hash: secretRecord.id,
+    hash: secretRecord.hash,
     secretText: secretRecord.secret,
     createdAt: secretRecord.createdAt.toISOString(),
     expiresAt: secretRecord.expiresAt
