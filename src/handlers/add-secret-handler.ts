@@ -3,7 +3,7 @@ import { db } from '../db';
 import type { Secret } from '../types/secret.interface';
 import { createHash } from 'crypto';
 
-export const addSecretHandler: Handler = async ({ body }) => {
+export const addSecretHandler: Handler = async ({ body, set }) => {
   const { secret, expireAfterViews, expireAfter } = body as Secret;
 
   // generate unique hash
@@ -33,6 +33,8 @@ export const addSecretHandler: Handler = async ({ body }) => {
     expiresAt,
     remainingViews: expireAfterViews,
   };
+
+  set.status = 201;
 
   return response;
 };
