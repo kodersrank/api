@@ -9,6 +9,7 @@
     "start": "NODE_ENV=production bun src/index.ts"
   },
   "dependencies": {
+    "@elysiajs/swagger": "^1.1.0",
     "crypto": "1.0.1",
     "elysia": "1.1.5",
     "elysia-xml": "0.0.2",
