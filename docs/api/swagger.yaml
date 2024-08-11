@@ -48,7 +48,7 @@ paths:
           description: "successful operation"
           schema:
             $ref: "#/definitions/Secret"
-        405:
+        422:
           description: "Invalid input"
           
   /secret/{hash}:
