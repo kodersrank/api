@@ -5,15 +5,21 @@ import { AddSecretSchema } from './schemas/add-secret-schema';
 import { GetSecretSchema } from './schemas/get-secret-schema';
 import { xml } from 'elysia-xml';
 import swagger from '@elysiajs/swagger';
+import cors from '@elysiajs/cors';
 
 // Initialize Elysia server
 const app = new Elysia()
+  .use(
+    cors({
+      origin: new RegExp(`${process.env.APP_ORIGIN}$`),
+    })
+  )
   .use(swagger())
-  .group('/secret', (app) =>
+  .group('/api', (app) =>
     app
       .use(xml())
-      .post('/', addSecretHandler, AddSecretSchema)
-      .get('/:hash', getSecretHandler, GetSecretSchema)
+      .post('/secret/', addSecretHandler, AddSecretSchema)
+      .get('/secret/:hash', getSecretHandler, GetSecretSchema)
   )
   .listen(3333);
 
