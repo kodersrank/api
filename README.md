@@ -1,5 +1,8 @@
 # Backend API
 
+This project is an implementation of the **Secret Server Coding Task** as specified
+[**here**](https://github.com/peti2001/secret-server-task).
+
 ## Technologies Used
 
 - **Elysia**: A web framework for building APIs.
