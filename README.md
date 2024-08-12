@@ -53,11 +53,15 @@ The default PostgreSQL port will be used (`5432`).
 
 Apply the database migrations using Knex:
 
-```bunx knex migrate:latest```
+```shell
+bunx knex migrate:latest
+```
 
 If it faces any issues loading the environment variables, run:
 
-```bunx @dotenvx/dotenvx run -- bunx knex migrate:latest```
+```shell
+bunx @dotenvx/dotenvx run -- bunx knex migrate:latest
+```
 
 2. **Start the Server**
 
