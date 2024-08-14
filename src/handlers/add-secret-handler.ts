@@ -11,7 +11,7 @@ export const addSecretHandler: Handler = async ({ body, set }) => {
     .update(secret + Date.now().toString())
     .digest('hex');
 
-  const createdAt = new Date();
+  const createdAt = new Date(Date.now());
 
   const expiresAt =
     +expireAfter <= 0 ? null : new Date(Date.now() + +expireAfter * 60000);
