@@ -22,7 +22,7 @@ export const getSecretHandler: Handler = async ({ error, params }) => {
   } = secret;
 
   // check expiration based on TTL
-  if (expiresAt && new Date(expiresAt) <= new Date()) {
+  if (expiresAt && new Date(expiresAt) <= new Date(Date.now())) {
     return error(410, 'secret has expired');
   }
 
