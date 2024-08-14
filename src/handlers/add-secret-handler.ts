@@ -13,9 +13,8 @@ export const addSecretHandler: Handler = async ({ body, set }) => {
 
   const createdAt = new Date();
 
-  const expiresAt = new Date(
-    Date.now() + (+expireAfter > 0 ? expireAfter : 5) * 60000
-  );
+  const expiresAt =
+    +expireAfter <= 0 ? null : new Date(Date.now() + +expireAfter * 60000);
 
   // insert secret into the database
   await db('secrets').insert({
