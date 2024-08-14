@@ -4,22 +4,23 @@
   "type": "module",
   "scripts": {
     "preinstall": "npx only-allow bun",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest",
     "dev": "NODE_ENV=development bun --watch src/index.ts",
     "start": "NODE_ENV=production bun src/index.ts"
   },
   "dependencies": {
-    "@elysiajs/cors": "^1.1.0",
-    "@elysiajs/swagger": "^1.1.0",
+    "@elysiajs/cors": "1.1.0",
+    "@elysiajs/swagger": "1.1.0",
     "crypto": "1.0.1",
     "elysia": "1.1.5",
     "elysia-xml": "0.0.2",
     "knex": "3.1.0",
-    "pg": "^8.12.0"
+    "pg": "8.12.0"
   },
   "devDependencies": {
     "@types/bun": "1.1.6",
-    "bun-types": "1.1.22"
+    "bun-types": "1.1.22",
+    "vitest": "2.0.5"
   },
   "peerDependencies": {
     "typescript": "5.0.0"
