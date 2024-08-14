@@ -13,6 +13,6 @@ export const SecretSchemaExtended = t.Object({
   ...baseSchema,
   hash: t.String(),
   createdAt: t.Date(),
-  expiresAt: t.Date(),
+  expiresAt: t.Union([t.Date(), t.Null()]),
   remainingViews: t.Number(),
 });
